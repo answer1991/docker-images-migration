@@ -22,3 +22,11 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+*.log
+*.iml
+.idea/
+docker-images-migration
+images-tar.tar
+auth.json
+images.json
