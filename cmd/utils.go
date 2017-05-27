@@ -60,12 +60,12 @@ func loadSource() (sourceList []*types.Source, err error) {
 		return nil, err
 	}
 
-	source := &types.Source{}
-	if err = json.Unmarshal(content, source); nil != err {
+	s := &types.Source{}
+	if err = json.Unmarshal(content, s); nil != err {
 		return nil, err
 	}
 
-	sourceList[0] = source
+	sourceList[0] = s
 
 	return sourceList, nil
 }
