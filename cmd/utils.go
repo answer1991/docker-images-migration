@@ -34,24 +34,38 @@ func loadAuth() (info *types.AuthInfo, err error) {
 }
 
 func loadSource() (sourceList []*types.Source, err error) {
-	if nil != sourceFiles {
-		sourceList = make([]*types.Source, len(sourceFiles))
+	//if nil != sourceFiles {
+	//	sourceList = make([]*types.Source, len(sourceFiles))
+	//
+	//	for i, sourceFile := range sourceFiles {
+	//		content, err := ioutil.ReadFile(sourceFile)
+	//
+	//		if nil != err {
+	//			return nil, err
+	//		}
+	//
+	//		source := &types.Source{}
+	//		if err = json.Unmarshal(content, source); nil != err {
+	//			return nil, err
+	//		}
+	//
+	//		sourceList[i] = source
+	//	}
+	//}
 
-		for i, sourceFile := range sourceFiles {
-			content, err := ioutil.ReadFile(sourceFile)
+	sourceList = make([]*types.Source, 1)
+	content, err := ioutil.ReadFile(source)
 
-			if nil != err {
-				return nil, err
-			}
-
-			source := &types.Source{}
-			if err = json.Unmarshal(content, source); nil != err {
-				return nil, err
-			}
-
-			sourceList[i] = source
-		}
+	if nil != err {
+		return nil, err
 	}
+
+	source := &types.Source{}
+	if err = json.Unmarshal(content, source); nil != err {
+		return nil, err
+	}
+
+	sourceList[0] = source
 
 	return sourceList, nil
 }

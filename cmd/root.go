@@ -31,9 +31,10 @@ var (
 	tlscert    string
 	tlskey     string
 
-	sourceFiles []string
-	authFile    string
-	target      string
+	//sourceFiles []string
+	source   string
+	authFile string
+	target   string
 )
 
 // RootCmd represents the base command when called without any subcommands
@@ -93,9 +94,11 @@ func init() {
 	RootCmd.PersistentFlags().StringVar(&tlscert, "tlscert", "~/.docker/cert.pem", "Path to TLS certificate file")
 	RootCmd.PersistentFlags().StringVar(&tlskey, "tlskey", "~/.docker/key.pem", "Path to TLS key file")
 
-	RootCmd.PersistentFlags().StringVarP(&authFile, "auth", "a", "./auth.json", "Registry Auth File")
-	sourceFiles = *RootCmd.PersistentFlags().StringArrayP("source", "s", []string{"./images.json"}, "Images Source File")
-	RootCmd.PersistentFlags().StringVarP(&target, "target", "t", "./images-tar.tar", "Images Tar file")
+	RootCmd.PersistentFlags().StringVarP(&authFile, "auth", "a", "", "Registry Auth File")
+	//sourceFiles = *RootCmd.PersistentFlags().StringArrayP("source", "s", []string{"./images.json"}, "Images Source File")
+	RootCmd.PersistentFlags().StringVarP(&target, "target", "t", "./images-tar.tar", "Images Tar File")
+	RootCmd.PersistentFlags().StringVarP(&source, "source", "s", "./images.json", "Images Source File")
+
 }
 
 // initConfig reads in config file and ENV variables if set.
