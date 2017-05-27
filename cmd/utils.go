@@ -307,7 +307,13 @@ func pushImages(cmd *cobra.Command, images []string) (err error) {
 
 func tarImages(cmd *cobra.Command, images []string) (err error) {
 	docker := getDockerCmdFlag()
-	command := exec.Command(docker, "save", "-o", target, strings.Join(images, " "))
+
+	args := []string{"save", "-o", target}
+	for _, image := range images {
+		args = append(args, image)
+	}
+
+	command := exec.Command(docker, args...)
 	command.Stdout = cmd.OutOrStdout()
 
 	if err := command.Run(); nil != err {
